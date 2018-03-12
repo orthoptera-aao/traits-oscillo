@@ -30,8 +30,7 @@ function oscillo_init() {
 }
 
 function oscillo_analyse($recording) {
-  core_log("info", "oscillo", "OK!");
   $file = core_download("wav/".$recording["id"].".wav");
   print_r($file);
-return array();
-
+  return array();
+}
