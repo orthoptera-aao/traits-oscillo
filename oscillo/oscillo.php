@@ -48,13 +48,13 @@ function oscillo_prepare() {
 
 function oscillo_analyse($recording) {
   $return = array();
-  $file = core_download("wav/".$recording["id"].".wav");
-  $return[$recording["id"].".wav"] = array(
-    "file name" => $recording["id"].".wav",
-    "local path" => "scratch/wav/",
-    "save path" => NULL
-  );
   if (!in_array($recording["id"].".png", $GLOBALS["oscillo"]["oscillograms"])) {
+    $file = core_download("wav/".$recording["id"].".wav");
+    $return[$recording["id"].".wav"] = array(
+      "file name" => $recording["id"].".wav",
+      "local path" => "scratch/wav/",
+      "save path" => NULL
+    );
     core_log("info", "oscillo", "Attepting to create oscillogram for recording ".$recording["id"].".");
     exec("Rscript modules/traits-oscillo/oscillo/oscillo.R ".$recording["id"]." \"".$recording["taxon"]."\" scratch/wav/".$recording["id"].".wav", $output, $return_value);
     if ($return_value == 0) {
