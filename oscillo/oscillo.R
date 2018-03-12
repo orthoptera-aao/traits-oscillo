@@ -1,6 +1,5 @@
 library(tuneR)
 library(seewave)
-#library(stringr)
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -8,12 +7,25 @@ recording_id <- args[1]
 species <- args[2]
 filename <- args[3];
 
-
-wave <- readWave(filename);
+#Read wave file
+tryCatch({
+  wave <- readWave(filename);
+}, error = function(err) {
+  quit("no", status=1, runLast=FALSE)
+})
 
 #normalise
-wave <- normalize(wave);
+tryCatch({
+  wave <- normalize(wave);
+}, error = function(err) {
+  quit("no", status=2, runLast=FALSE)
+})
 
-png(filename=paste0("modules/traits-oscillo/oscillo/",recording_id,".png"))
-plot(wave);
-dev.off()
+#Plot
+tryCatch({
+  png(filename=paste0("modules/traits-oscillo/oscillo/",recording_id,".png"))
+  plot(wave);
+  dev.off()
+}, error = function(err) {
+  quit("no", status=3, runLast=FALSE)
+})
