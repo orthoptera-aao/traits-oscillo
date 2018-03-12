@@ -4,7 +4,7 @@ function oscillo_info() {
   return(
     array(
       "oscillo" => array(
-        "dependencies" => array()
+        "dependencies" => array("bioacoustica") //BioAcoustica provides wave file.
       )
     )
   );
@@ -30,6 +30,8 @@ function oscillo_init() {
 }
 
 function oscillo_analyse($recording) {
-print_r($recording);
+  core_log("info", "oscillo", "OK!");
+  $file = core_download("wav/".$recording["id"].".wav");
+  print_r($file);
 return array();
-}
+
