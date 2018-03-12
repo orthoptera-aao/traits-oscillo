@@ -70,7 +70,7 @@ function oscillo_analyse($recording) {
   
   if (!in_array($recording["id"].".png", $GLOBALS["oscillo"]["oscillograms"])) {
     core_log("info", "oscillo", "Attepting to create oscillogram for recording ".$recording["id"].".");
-    echo "Rscript modules/oscillo/oscillo.R ".$recording["id"]." ".$recording["taxon"]." ".$recording["id"].".wav");exit;
+    echo "Rscript modules/oscillo/oscillo.R ".$recording["id"]." ".$recording["taxon"]." ".$recording["id"].".wav";exit;
     exec("Rscript modules/oscillo/oscillo.R ".$recording["id"]." ".$recording["taxon"]." ".$recording["id"].".wav", $output, $return_value);
     
   }
