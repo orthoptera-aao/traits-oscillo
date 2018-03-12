@@ -33,7 +33,7 @@ function oscillo_analyse($recording) {
   $return = array();
   $file = core_download("wav/".$recording["id"].".wav");
   $return[$recording["id"].".wav"] = array(
-    "file name" => $data["id"].".wav",
+    "file name" => $recording["id"].".wav",
     "local path" => "scratch/wav/",
     "save path" => NULL
   );
