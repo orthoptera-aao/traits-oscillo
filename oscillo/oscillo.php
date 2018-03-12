@@ -54,7 +54,8 @@ function oscillo_analyse($recording) {
     "save path" => NULL
   );
   
-  //BELOW COPIED FROM OLD ANALYSIS
+  /*
+  BELOW COPIED FROM OLD ANALYSIS
   
   if (file_exists("./oscillo/$recording_id".".png")) {
     print "Skipping file already plotted.".PHP_EOL;
@@ -65,6 +66,7 @@ function oscillo_analyse($recording) {
     system("Rscript oscillo.R $recording_id '$species' $filename");
     system("rm $filename");
   }
+  */
   
   return($return);
 }
