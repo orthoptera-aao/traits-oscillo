@@ -1,6 +1,6 @@
 library(tuneR)
 library(seewave)
-library(stringr)
+#library(stringr)
 
 args = commandArgs(trailingOnly=TRUE)
 
