@@ -43,6 +43,7 @@ function oscillo_prepare() {
     }
   core_log("info", "bioacoustica", count($GLOBALS["oscillo"]["oscillograms"])." oscillogram image files found.");
   }
+  return(array());
 }
 
 function oscillo_analyse($recording) {
