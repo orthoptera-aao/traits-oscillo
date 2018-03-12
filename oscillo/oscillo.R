@@ -14,6 +14,6 @@ wave <- readWave(filename);
 #normalise
 wave <- normalize(wave);
 
-png(filename=paste0("modules/oscillo/",recording_id,".png"))
+png(filename=paste0("modules/traits-oscillo/oscillo/",recording_id,".png"))
 plot(wave);
 dev.off()
