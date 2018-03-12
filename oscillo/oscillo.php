@@ -53,21 +53,6 @@ function oscillo_analyse($recording) {
     "local path" => "scratch/wav/",
     "save path" => NULL
   );
-  
-  /*
-  BELOW COPIED FROM OLD ANALYSIS
-  
-  if (file_exists("./oscillo/$recording_id".".png")) {
-    print "Skipping file already plotted.".PHP_EOL;
-  } else {
-    $url = "https://ams3.digitaloceanspaces.com/bioacoustica-data-backup/recordings/$filename";
-    system ("wget -O $filename $url");
-    $format = strrchr(".", $filename);
-    system("Rscript oscillo.R $recording_id '$species' $filename");
-    system("rm $filename");
-  }
-  */
-  
   if (!in_array($recording["id"].".png", $GLOBALS["oscillo"]["oscillograms"])) {
     core_log("info", "oscillo", "Attepting to create oscillogram for recording ".$recording["id"].".");
     exec("Rscript modules/traits-oscillo/oscillo/oscillo.R ".$recording["id"]." \"".$recording["taxon"]."\" scratch/wav/".$recording["id"].".wav", $output, $return_value);
@@ -75,11 +60,9 @@ function oscillo_analyse($recording) {
       $return[$recording["id"].".png"] = array(
         "file name" => $recording["id"].".png",
         "local path" => "modules/traits-oscillo/oscillo/",
-        "save path" => "oscillo/".$GLOBALS["modules"]["oscillo"]["git_hash"]
+        "save path" => "oscillo/".$GLOBALS["modules"]["oscillo"]["git_hash"]."/"
       );
-      print_r($return);exit;
     }
   }
-  
   return($return);
 }
