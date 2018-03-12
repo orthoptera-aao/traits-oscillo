@@ -11,6 +11,7 @@ filename <- args[3];
 tryCatch({
   wave <- readWave(filename);
 }, error = function(err) {
+  print("err")
   quit("no", status=1, runLast=FALSE)
 })
 
@@ -18,6 +19,7 @@ tryCatch({
 tryCatch({
   wave <- normalize(wave);
 }, error = function(err) {
+  print("err")
   quit("no", status=2, runLast=FALSE)
 })
 
@@ -27,5 +29,6 @@ tryCatch({
   plot(wave);
   dev.off()
 }, error = function(err) {
+  print("err")
   quit("no", status=3, runLast=FALSE)
 })

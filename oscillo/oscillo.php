@@ -62,6 +62,18 @@ function oscillo_analyse($recording) {
         "local path" => "modules/traits-oscillo/oscillo/",
         "save path" => "oscillo/".$GLOBALS["modules"]["oscillo"]["git_hash"]."/"
       );
+    } else {
+      switch ($return_value) {
+        case 1:
+          core_log("warning", "oscillo", "Recording ".$recording["id"]:" Failed to read wave file: ".serialize($output));
+          break;
+        case 2:
+          core_log("warning", "oscillo", "Recording ".$recording["id"]:" Failed to normalise wave file: ".serialize($output));
+          break;
+        case 3:
+          core_log("warning", "oscillo", "Recording ".$recording["id"]:" Failed to plot oscillogram: ".serialize($output));
+          break;
+      }
     }
   }
   return($return);
