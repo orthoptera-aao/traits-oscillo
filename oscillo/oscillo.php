@@ -65,13 +65,13 @@ function oscillo_analyse($recording) {
     } else {
       switch ($return_value) {
         case 1:
-          core_log("warning", "oscillo", "Recording ".$recording["id"]:" Failed to read wave file: ".serialize($output));
+          core_log("warning", "oscillo", "Recording ".$recording["id"]": Failed to read wave file: ".serialize($output));
           break;
         case 2:
-          core_log("warning", "oscillo", "Recording ".$recording["id"]:" Failed to normalise wave file: ".serialize($output));
+          core_log("warning", "oscillo", "Recording ".$recording["id"]": Failed to normalise wave file: ".serialize($output));
           break;
         case 3:
-          core_log("warning", "oscillo", "Recording ".$recording["id"]:" Failed to plot oscillogram: ".serialize($output));
+          core_log("warning", "oscillo", "Recording ".$recording["id"]": Failed to plot oscillogram: ".serialize($output));
           break;
       }
     }
