@@ -71,7 +71,14 @@ function oscillo_analyse($recording) {
   if (!in_array($recording["id"].".png", $GLOBALS["oscillo"]["oscillograms"])) {
     core_log("info", "oscillo", "Attepting to create oscillogram for recording ".$recording["id"].".");
     exec("Rscript modules/traits-oscillo/oscillo/oscillo.R ".$recording["id"]." \"".$recording["taxon"]."\" scratch/wav/".$recording["id"].".wav", $output, $return_value);
-    print_r($output);
+    if ($return_value == 0) {
+      $return[$recording["id"].".png"] = array(
+        "file name" => $recording["id"].".png",
+        "local path" => "modules/traits-oscillo/oscillo/",
+        "save path" => "oscillo/".$GLOBALS["modules"]["oscillo"]["git_hash"]
+      );
+      print_r($return);exit;
+    }
   }
   
   return($return);
