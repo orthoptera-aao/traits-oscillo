@@ -50,6 +50,10 @@ function oscillo_analyse($recording) {
   $return = array();
   if (!in_array($recording["id"].".png", $GLOBALS["oscillo"]["oscillograms"])) {
     $file = core_download("wav/".$recording["id"].".wav");
+    if ($file == NULL) {
+      core_log("warning", "oscillo", "File was not available, skipping analysis.");
+      continue;
+    }
     $return[$recording["id"].".wav"] = array(
       "file name" => $recording["id"].".wav",
       "local path" => "scratch/wav/",
