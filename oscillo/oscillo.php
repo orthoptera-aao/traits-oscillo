@@ -34,21 +34,21 @@ function oscillo_prepare() {
   exec("s3cmd ls s3://bioacoustica-analysis/oscillo/".$GLOBALS["modules"]["oscillo"]["git_hash"]."/", $output, $return_value);
   if ($return_value == 0) {
     if (count($output) == 0) {
-      $GLOBALS["oscillo"]["oscillograms"] = array();
+      $GLOBALS["anlayses"]["oscillo"] = array();
     } else {
       foreach ($output as $line) {
         $start = strrpos($line, "/");
-        $GLOBALS["oscillo"]["oscillograms"][] = substr($line, $start + 1);
+        $GLOBALS["anlayses"]["oscillo"][] = substr($line, $start + 1);
       }
     }
-  core_log("info", "bioacoustica", count($GLOBALS["oscillo"]["oscillograms"])." oscillogram image files found.");
+  core_log("info", "oscillo", count($GLOBALS["anlayses"]["oscillo"])." oscillogram image files found.");
   }
   return(array());
 }
 
 function oscillo_analyse($recording) {
   $return = array();
-  if (!in_array($recording["id"].".png", $GLOBALS["oscillo"]["oscillograms"])) {
+  if (!in_array($recording["id"].".png", $GLOBALS["anlayses"]["oscillo"])) {
     $file = core_download("wav/".$recording["id"].".wav");
     if ($file == NULL) {
       core_log("warning", "oscillo", "File was not available, skipping analysis.");
