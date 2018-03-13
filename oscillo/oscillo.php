@@ -30,6 +30,7 @@ function oscillo_init() {
 }
 
 function oscillo_prepare() {
+  global $system;
   core_log("info", "oscillo", "Attempting to list oscillogram image files on analysis server.");
   exec("s3cmd ls s3://bioacoustica-analysis/oscillo/".$system["modules"]["oscillo"]["git_hash"]."/", $output, $return_value);
   if ($return_value == 0) {
@@ -47,6 +48,7 @@ function oscillo_prepare() {
 }
 
 function oscillo_analyse($recording) {
+  global $system;
   $return = array();
   if (!in_array($recording["id"].".png", $system["analyses"]["oscillo"])) {
     $file = core_download("wav/".$recording["id"].".wav");
