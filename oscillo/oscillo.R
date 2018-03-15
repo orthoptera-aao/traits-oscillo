@@ -4,14 +4,13 @@ library(seewave)
 args = commandArgs(trailingOnly=TRUE)
 
 recording_id <- args[1]
-species <- args[2]
-filename <- args[3];
+filename <- args[2];
 
 #Read wave file
 tryCatch({
   wave <- readWave(filename);
 }, error = function(err) {
-  print("err")
+  print(err)
   quit("no", status=1, runLast=FALSE)
 })
 
@@ -19,7 +18,7 @@ tryCatch({
 tryCatch({
   wave <- normalize(wave);
 }, error = function(err) {
-  print("err")
+  print(err)
   quit("no", status=2, runLast=FALSE)
 })
 
@@ -29,6 +28,7 @@ tryCatch({
   plot(wave);
   dev.off()
 }, error = function(err) {
-  print("err")
+  print(err
+  )
   quit("no", status=3, runLast=FALSE)
 })
